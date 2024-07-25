@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://euddsxbi1fmy"]
+
+[ext_resource type="Texture2D" uid="uid://4gwe6w6yx6eo" path="res://minawan/CJwan.png" id="1_b7hwv"]
+[ext_resource type="Script" path="res://minigames/fwoot_punch/minawan_entity.gd" id="1_vqtj8"]
+
+[sub_resource type="Animation" id="Animation_3ddgh"]
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%MinawanSprite:offset:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0vowe"]
+resource_name = "game_end"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MinawanSprite:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.133333, 3.5, -400, -0.166667, 60.5, 0.25, 0, 0, -0.166667, -5.5, 0.25, 0),
+"times": PackedFloat32Array(0, 0.166667, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_yi7js"]
+resource_name = "moving"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.02, 0, 0.03, 0, 1, -0.02, 0, 0.03, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%MinawanSprite:offset:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 0, -0.02, 0, 0.03, 0),
+"times": PackedFloat32Array(0, 0.0666666, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5xlk"]
+_data = {
+"RESET": SubResource("Animation_3ddgh"),
+"game_end": SubResource("Animation_0vowe"),
+"moving": SubResource("Animation_yi7js")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_lqnlf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1700, 0)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g85q"]
+radius = 62.3939
+
+[node name="MinawanEntity" type="Node2D"]
+script = ExtResource("1_vqtj8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../MinawanPath")
+libraries = {
+"": SubResource("AnimationLibrary_j5xlk")
+}
+
+[node name="PlayingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="WaitingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="MinawanPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_lqnlf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MinawanPath"]
+unique_name_in_owner = true
+loop = false
+
+[node name="Area2D" type="Area2D" parent="MinawanPath/PathFollow2D"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinawanPath/PathFollow2D/Area2D"]
+shape = SubResource("CircleShape2D_3g85q")
+
+[node name="MinawanSprite" type="Sprite2D" parent="MinawanPath/PathFollow2D/Area2D/CollisionShape2D"]
+unique_name_in_owner = true
+scale = Vector2(0.563483, 0.563483)
+texture = ExtResource("1_b7hwv")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="PlayingTimer" to="." method="_on_playing_timer_timeout"]
+[connection signal="timeout" from="WaitingTimer" to="." method="_on_waiting_timer_timeout"]

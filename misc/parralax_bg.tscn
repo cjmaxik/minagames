@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b131h684veml5"]
+
+[ext_resource type="Texture2D" uid="uid://spycpkvq5two" path="res://misc/bg.jpg" id="1_4osat"]
+
+[node name="Background" type="Parallax2D"]
+z_index = -1
+repeat_size = Vector2(360.35, 252.5)
+autoscroll = Vector2(-10, 10)
+repeat_times = 9
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="BackgroundScroller" type="Sprite2D" parent="."]
+scale = Vector2(0.250248, 0.250248)
+texture = ExtResource("1_4osat")

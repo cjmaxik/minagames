@@ -1,0 +1,150 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvki6br1cpk2x"]
+
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_egjds"]
+[ext_resource type="PackedScene" uid="uid://b131h684veml5" path="res://misc/parralax_bg.tscn" id="2_0gu78"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_egjds")
+
+[node name="Background" parent="." instance=ExtResource("2_0gu78")]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="GameWinText" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -599.0
+offset_top = -429.0
+offset_right = 599.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "MinaGames"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameSelectionButtons" type="VBoxContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -269.0
+offset_right = 266.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="FwootPunchButton" type="Button" parent="UI/GameSelectionButtons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "Fwoot Punch"
+
+[node name="MinawanBarrelButton" type="Button" parent="UI/GameSelectionButtons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "Minawan Barrel"
+
+[node name="ComingSoonButton" type="Button" parent="UI/GameSelectionButtons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "more coming soon ;)"
+
+[node name="Settings" type="VBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -181.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="SettingsText" type="Label" parent="UI/Settings"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinawanTypeContainer" type="HBoxContainer" parent="UI/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="SettingsText" type="Label" parent="UI/Settings/MinawanTypeContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Minawan Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinawanType" type="Button" parent="UI/Settings/MinawanTypeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Only for \"Fwoot Punch\" minigame"
+focus_mode = 0
+theme_override_font_sizes/font_size = 25
+toggle_mode = true
+button_pressed = true
+text = "Standard"
+
+[node name="Help" type="VBoxContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -406.0
+offset_top = -195.0
+offset_right = -22.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="SettingsText" type="Label" parent="UI/Help"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "F - toggle Fullscreen
+R- restart minigame
+Q - exit minigame"
+vertical_alignment = 1
+
+[node name="CreditsText" type="Label" parent="UI/Help"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Made by CJMAXiK
+Hugely inspired by FNAF and Scott Cawthon
+
+Includes art from ScottWan and minasonas: %s"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="UI/GameSelectionButtons/FwootPunchButton" to="." method="_on_fwoot_punch_button_pressed"]
+[connection signal="pressed" from="UI/GameSelectionButtons/MinawanBarrelButton" to="." method="_on_minawan_barrel_button_pressed"]
+[connection signal="toggled" from="UI/Settings/MinawanTypeContainer/MinawanType" to="." method="_on_standard_minawan_toggled"]
