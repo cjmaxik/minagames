@@ -5,7 +5,7 @@ var current_minawan: String = "RickWan"
 func _ready() -> void:
 	$Playable/SelectedMinawan.visible = false
 
-	var minawan: String = "rickroll"
+	var minawan: String = "RickWan"
 	if randi_range(0, 10) != 0:
 		minawan = Global.personalized_minawan.pick_random()
 

@@ -52,16 +52,17 @@ func _process(_delta: float) -> void:
 			
 		await $Game/Sprites/AnimationPlayer.animation_finished
 		
+		_update_ui()
+		
 		if tries_left == 0:
 			Global.game_end.emit()
 			_game_end()
-		elif is_scored:
+		
+		if is_scored:
 			$Sounds/Hoop.play()
 
 		$Game/AnimationPlayer.speed_scale = 1
 		$Game/AnimationPlayer.seek(0)
-
-		_update_ui()
 		input_pause = false
 
 func _game_end() -> void:

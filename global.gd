@@ -23,8 +23,6 @@ static var standard_minawan: Array = [
 @export var punch_current_stopped_minawan: int = 0
 
 func _init() -> void:
-    standard_minawan.shuffle()
-
     var path = "res://minawan/"
     for fname in DirAccess.get_files_at(path):
         var import_name: String = fname.trim_suffix(".import")
@@ -34,8 +32,11 @@ func _init() -> void:
 
             if fname.begins_with("standard_"):
                 standard_minawan.append(fname.trim_suffix(".png.import"))
+                standard_minawan.append(fname.trim_suffix(".png.import")) # twice because we don't have enough
             else:
                 personalized_minawan.append(fname.trim_suffix(".png.import"))
+                
+    standard_minawan.shuffle()
     personalized_minawan.shuffle()
 
 func _ready() -> void:
