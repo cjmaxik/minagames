@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://clc5lp5r3qyj6" path="res://minigames/minawan_barrel/smug.png" id="6_1gno6"]
 [ext_resource type="Texture2D" uid="uid://dhkal2x05sdfn" path="res://minawan/rickroll.png" id="7_r1rvg"]
 [ext_resource type="AudioStream" uid="uid://dobw7vgfu1xmk" path="res://sounds/Minor_Corrosion_of_the_Bizet.ogg" id="8_k3405"]
-[ext_resource type="AudioStream" uid="uid://cwc5h20rxjnis" path="res://sounds/airhorn.ogg" id="9_ptmhx"]
+[ext_resource type="AudioStream" uid="uid://c3e4js08ohj76" path="res://sounds/airhorn.ogg" id="9_ptmhx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrf3o"]
 animations = [{

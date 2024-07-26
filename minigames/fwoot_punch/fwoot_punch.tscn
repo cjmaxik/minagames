@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://minigames/fwoot_punch/fwoot_punch.gd" id="1_d6on8"]
 [ext_resource type="PackedScene" uid="uid://b131h684veml5" path="res://misc/parralax_bg.tscn" id="2_lealp"]
 [ext_resource type="Texture2D" uid="uid://72at65emoo40" path="res://minigames/fwoot_punch/berber.png" id="3_5qktt"]
-[ext_resource type="AudioStream" uid="uid://cwc5h20rxjnis" path="res://sounds/airhorn.ogg" id="4_o0pqd"]
+[ext_resource type="AudioStream" uid="uid://c3e4js08ohj76" path="res://sounds/airhorn.ogg" id="4_o0pqd"]
 [ext_resource type="AudioStream" uid="uid://dobw7vgfu1xmk" path="res://sounds/Minor_Corrosion_of_the_Bizet.ogg" id="6_8hlgc"]
 [ext_resource type="AudioStream" uid="uid://pe58aj6p7xc" path="res://sounds/fwootPunch.ogg" id="6_dvrgn"]
 

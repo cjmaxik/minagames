@@ -3,9 +3,12 @@ extends Node
 signal game_start()
 signal game_end()
 
+# region SCENES
 static var main_menu_scene: PackedScene = preload("res://main_menu/main_menu.tscn")
 static var fwoot_punch_scene: PackedScene = preload("res://minigames/fwoot_punch/fwoot_punch.tscn")
 static var minawan_barrel_scene: PackedScene = preload("res://minigames/minawan_barrel/minawan_barrel.tscn")
+static var microwave_hoops_scene: PackedScene = preload("res://minigames/microwave_hoops/microwave_hoops.tscn")
+# endregion
 
 @export var is_playing: bool = false
 @export var is_personalized: bool = true

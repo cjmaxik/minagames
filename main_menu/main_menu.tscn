@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvki6br1cpk2x"]
+[gd_scene load_steps=6 format=3 uid="uid://bvki6br1cpk2x"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_egjds"]
 [ext_resource type="PackedScene" uid="uid://b131h684veml5" path="res://misc/parralax_bg.tscn" id="2_0gu78"]
+[ext_resource type="AudioStream" uid="uid://1lenub64b85r" path="res://sounds/Thank_You_For_Your_Patience_2_.ogg" id="3_dvrjn"]
+[ext_resource type="AudioStream" uid="uid://byefsxcqbsr5e" path="res://sounds/blip.ogg" id="4_yy43a"]
+[ext_resource type="AudioStream" uid="uid://crgufq2exxpiw" path="res://sounds/put.ogg" id="5_mr0l0"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_egjds")
@@ -55,6 +58,12 @@ layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 text = "Minawan Barrel"
+
+[node name="MicrowaveHoopsButton" type="Button" parent="UI/GameSelectionButtons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "Microwave Hoops"
 
 [node name="ComingSoonButton" type="Button" parent="UI/GameSelectionButtons"]
 layout_mode = 2
@@ -145,6 +154,19 @@ Includes art from ScottWan and minasonas: %s"
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_dvrjn")
+autoplay = true
+
+[node name="Blip" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_yy43a")
+
+[node name="Put" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_mr0l0")
+
 [connection signal="pressed" from="UI/GameSelectionButtons/FwootPunchButton" to="." method="_on_fwoot_punch_button_pressed"]
 [connection signal="pressed" from="UI/GameSelectionButtons/MinawanBarrelButton" to="." method="_on_minawan_barrel_button_pressed"]
+[connection signal="pressed" from="UI/GameSelectionButtons/MicrowaveHoopsButton" to="." method="_on_microwave_hoops_button_pressed"]
 [connection signal="toggled" from="UI/Settings/MinawanTypeContainer/MinawanType" to="." method="_on_standard_minawan_toggled"]
