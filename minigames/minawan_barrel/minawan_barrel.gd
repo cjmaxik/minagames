@@ -18,7 +18,7 @@ func _start_game() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Global.is_playing = false
-		get_tree().change_scene_to_packed(Global.main_menu_scene)
+		Global.change_scene_to("main_menu_scene")
 
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()

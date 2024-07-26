@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cingjpavsowxd" path="res://minigames/minawan_barrel/waiting.png" id="4_2iiot"]
 [ext_resource type="Texture2D" uid="uid://c4wnbts5eo0fo" path="res://minigames/minawan_barrel/picked.png" id="5_43uqr"]
 [ext_resource type="Texture2D" uid="uid://clc5lp5r3qyj6" path="res://minigames/minawan_barrel/smug.png" id="6_1gno6"]
-[ext_resource type="Texture2D" uid="uid://dhkal2x05sdfn" path="res://minawan/rickroll.png" id="7_r1rvg"]
+[ext_resource type="Texture2D" uid="uid://dhkal2x05sdfn" path="res://minawan/RickWan.png" id="7_r1rvg"]
 [ext_resource type="AudioStream" uid="uid://dobw7vgfu1xmk" path="res://sounds/Minor_Corrosion_of_the_Bizet.ogg" id="8_k3405"]
 [ext_resource type="AudioStream" uid="uid://c3e4js08ohj76" path="res://sounds/airhorn.ogg" id="9_ptmhx"]
 

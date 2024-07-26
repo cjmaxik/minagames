@@ -19,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%MinawanSprite:offset:y")
+tracks/1/path = NodePath("PathFollow2D/Area2D/MinawanSprite:offset:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ length = 0.3
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%MinawanSprite:offset:y")
+tracks/0/path = NodePath("PathFollow2D/Area2D/MinawanSprite:offset:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,14 +58,26 @@ tracks/0/keys = {
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%MinawanSprite:offset:y")
+tracks/1/enabled = false
+tracks/1/path = NodePath("PathFollow2D/Area2D/MinawanSprite:offset:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 100, -0.02, 0, 0.03, 0, -50, -0.02, 0, 0.03, 0, 0, -0.02, 0, 0.03, 0),
 "times": PackedFloat32Array(0, 0.0666666, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%MinawanPath/..:offset_y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666666, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 100.0, -50.0, 100.0, -50.0, 100.0, -50.0, 100.0, -50.0, 100.0, -50.0, 100.0, -50.0, 100.0, -50.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5xlk"]
@@ -81,8 +93,9 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3g85q"]
-radius = 62.3939
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8bih"]
+radius = 51.0
+height = 140.0
 
 [node name="MinawanEntity" type="Node2D"]
 script = ExtResource("1_vqtj8")
@@ -103,6 +116,7 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="MinawanPath" type="Path2D" parent="."]
+unique_name_in_owner = true
 curve = SubResource("Curve2D_lqnlf")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="MinawanPath"]
@@ -112,13 +126,15 @@ loop = false
 [node name="Area2D" type="Area2D" parent="MinawanPath/PathFollow2D"]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MinawanPath/PathFollow2D/Area2D"]
-shape = SubResource("CircleShape2D_3g85q")
-
-[node name="MinawanSprite" type="Sprite2D" parent="MinawanPath/PathFollow2D/Area2D/CollisionShape2D"]
+[node name="MinawanSprite" type="Sprite2D" parent="MinawanPath/PathFollow2D/Area2D"]
 unique_name_in_owner = true
-scale = Vector2(0.563483, 0.563483)
+scale = Vector2(0.55, 0.55)
 texture = ExtResource("1_b7hwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinawanPath/PathFollow2D/Area2D"]
+unique_name_in_owner = true
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_m8bih")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="PlayingTimer" to="." method="_on_playing_timer_timeout"]

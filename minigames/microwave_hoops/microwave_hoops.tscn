@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7mj1j"]
 resource_name = "moving"
-length = 0.5
+length = 0.45
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,7 +38,7 @@ tracks/0/path = NodePath("..:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.45),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -205,7 +205,7 @@ tracks/11/keys = {
 
 [sub_resource type="Animation" id="Animation_p0m58"]
 resource_name = "missed"
-length = 0.8
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -213,7 +213,7 @@ tracks/0/path = NodePath("GoosePath/PathFollow2D:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(0.535887, 1),
 "update": 0,
 "values": [0.0, 0.75]
@@ -225,7 +225,7 @@ tracks/1/path = NodePath("GoosePath/PathFollow2D/Goose:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.5708]
@@ -237,7 +237,7 @@ tracks/2/path = NodePath("GoosePath/PathFollow2D/Goose:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(1, 0.15932),
 "update": 0,
 "values": [Vector2(0.382231, 0.382232), Vector2(0, 0)]
@@ -249,7 +249,7 @@ tracks/3/path = NodePath("CerbyBack:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.566667),
+"times": PackedFloat32Array(0, 0.1, 0.633334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(10, -100), Vector2(0, 0)]
@@ -261,7 +261,7 @@ tracks/4/path = NodePath("GoosePath/PathFollow2D/Goose:offset")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(1, 0.267944),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(8000, 500)]
@@ -754,8 +754,8 @@ libraries = {
 }
 
 [node name="Microwave" type="Sprite2D" parent="Game/Sprites"]
-position = Vector2(1696, 496)
-scale = Vector2(0.58, 0.58)
+position = Vector2(1680, 480)
+scale = Vector2(0.405, 0.405)
 texture = ExtResource("6_a1wr6")
 
 [node name="GoosePath" type="Path2D" parent="Game/Sprites"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhkal2x05sdfn"
-path="res://.godot/imported/rickroll.png-7bbf674f1f4d686e71a28aef380cfb67.ctex"
+uid="uid://dyg5sfeknfc2q"
+path="res://.godot/imported/HoloWan.png-1a863f0ef29132d3b0a58ccba2d75dd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minawan/rickroll.png"
-dest_files=["res://.godot/imported/rickroll.png-7bbf674f1f4d686e71a28aef380cfb67.ctex"]
+source_file="res://minawan/HoloWan.png"
+dest_files=["res://.godot/imported/HoloWan.png-1a863f0ef29132d3b0a58ccba2d75dd0.ctex"]
 
 [params]
 

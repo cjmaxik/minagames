@@ -20,13 +20,14 @@ func _ready() -> void:
 	handle_split = (game_handle.size.x - 50.0) / TRIES
 
 func _start_game() -> void:
+	_update_ui()
 	$Game/AnimationPlayer.play("moving")
 	Global.game_start.emit()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Global.is_playing = false
-		get_tree().change_scene_to_packed(Global.main_menu_scene)
+		Global.change_scene_to("main_menu_scene")
 
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
@@ -36,12 +37,12 @@ func _process(_delta: float) -> void:
 			return
 		
 		input_pause = true
+		tries_left -= 1
 		$Sounds/Shoot.play()
 		$Game/AnimationPlayer.speed_scale = 0
 		
-		tries_left -= 1
-		if _is_in_bounds(arrow.progress, Vector2(game_handle.position.x, game_handle.position.x + game_handle.size.x)):
-			$Sounds/Hoop.play()
+		var is_scored: bool = _is_in_bounds(arrow.progress, Vector2(game_handle.position.x, game_handle.position.x + game_handle.size.x))
+		if is_scored:
 			$Game/Sprites/AnimationPlayer.play("scored")
 			scored += 1
 			game_handle.size.x -= handle_split
@@ -50,17 +51,23 @@ func _process(_delta: float) -> void:
 			$Game/Sprites/AnimationPlayer.play("missed")
 			
 		await $Game/Sprites/AnimationPlayer.animation_finished
-		_update_ui()
 		
 		if tries_left == 0:
 			Global.game_end.emit()
 			_game_end()
-		
+		elif is_scored:
+			$Sounds/Hoop.play()
+
 		$Game/AnimationPlayer.speed_scale = 1
 		$Game/AnimationPlayer.seek(0)
+
+		_update_ui()
 		input_pause = false
 
 func _game_end() -> void:
+	if scored >= GEESE_TO_BONUS:
+		$UI/ScoreText.text = str((scored * SCORE_POINT) + BONUS_POINTS)
+
 	$UI/AnimationPlayer.play("game_win")
 	$Game/Sprites/AnimationPlayer.play("win")
 	$Game/AnimationPlayer.stop()

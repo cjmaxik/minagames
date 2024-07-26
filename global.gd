@@ -13,41 +13,30 @@ static var microwave_hoops_scene: PackedScene = preload("res://minigames/microwa
 @export var is_playing: bool = false
 @export var is_personalized: bool = true
 
-static var personalized_minawan: Array = [
-    'Ayumuwan',
-    'BlueFoxWan',
-    'CabbageWan',
-    'Cerby',
-    'CJwan',
-    'DecrunsWan',
-    'JenbotWan',
-    'JojoWan',
-    'RandomWan',
-    'RogueWan',
-    'SnowFoxWan',
-    'VulgarisWan',
-    'Zakrowan',
-    'Zarywan',
-]
+static var personalized_minawan: Array = []
 
 static var standard_minawan: Array = [
-    'Cerby',
-    'standard_1',
-    'standard_1',
-    'standard_2',
-    'standard_3',
-    'standard_3',
-    'standard_4',
-    'standard_4',
-    'standard_5',
+    'Cerby'
 ]
 
 @export_category("Fwoot Punch")
 @export var punch_current_stopped_minawan: int = 0
 
 func _init() -> void:
-    personalized_minawan.shuffle()
     standard_minawan.shuffle()
+
+    var path = "res://minawan/"
+    for fname in DirAccess.get_files_at(path):
+        var import_name: String = fname.trim_suffix(".import")
+        if fname.ends_with(".import") and ResourceLoader.exists(path + import_name):
+            if fname.begins_with("RickWan"):
+                continue
+
+            if fname.begins_with("standard_"):
+                standard_minawan.append(fname.trim_suffix(".png.import"))
+            else:
+                personalized_minawan.append(fname.trim_suffix(".png.import"))
+    personalized_minawan.shuffle()
 
 func _ready() -> void:
     randomize()
@@ -72,3 +61,6 @@ func _on_game_end() -> void:
 func get_minawan_list() -> Array:
     var list = personalized_minawan if is_personalized else standard_minawan
     return list.duplicate()
+
+func change_scene_to(scene_name: String) -> void:
+    get_tree().change_scene_to_packed(get(scene_name))

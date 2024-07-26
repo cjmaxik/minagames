@@ -1,7 +1,6 @@
 extends Node2D
 
 const NUMBER_OF_MINAWANS: int = 9
-const POSITION_VARIATION: int = 50
 
 const MINAWAN_POINT: int = 100
 const BONUS_POINT: int = 5000
@@ -22,7 +21,7 @@ func _ready() -> void:
 	all_minawan.shuffle()
 	for i in NUMBER_OF_MINAWANS:
 		var minawan = minawan_entity.instantiate()
-		minawan.global_position = starting_point + Vector2(0, randf_range(-POSITION_VARIATION, POSITION_VARIATION))
+		minawan.global_position = starting_point
 		minawan.minawan_texture = all_minawan.pop_front()
 
 		minawan_area.add_child(minawan)
@@ -36,7 +35,7 @@ func _start_game() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Global.is_playing = false
-		get_tree().change_scene_to_packed(Global.main_menu_scene)
+		Global.change_scene_to("main_menu_scene")
 
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()

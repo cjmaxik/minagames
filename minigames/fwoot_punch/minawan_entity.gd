@@ -1,5 +1,7 @@
 extends Node2D
 
+const POSITION_VARIATION: int = 50
+
 const MIN_TIMER: float = 3.0
 const MAX_TIMER: float = 6.0
 
@@ -20,8 +22,17 @@ const MAX_MINAWAN_STOPPED: int = 3
 
 var minawan_texture: String
 
+var current_position_y: float = 0.0
+@export var offset_y: float = 0.0:
+	set(value):
+		position.y = current_position_y + value
+
 func _ready() -> void:
 	minawan_sprite.texture = load("res://minawan/%s.png" % minawan_texture)
+	name = "%sMinawan" % minawan_texture
+	position += Vector2(0, randf_range(-POSITION_VARIATION, POSITION_VARIATION))
+	current_position_y = position.y
+	_prepare_collision_area()
 
 	Global.game_start.connect(_on_game_start)
 	Global.game_end.connect(_on_game_end)
@@ -42,6 +53,14 @@ func _ready() -> void:
 func _start() -> void:
 	_play_animation()
 	playing_timer.start()
+
+func _prepare_collision_area() -> void:
+	var image: Image = minawan_sprite.texture.get_image()
+	var rect: Rect2i = image.get_used_rect()
+	
+	%CollisionShape2D.shape = CapsuleShape2D.new()
+	%CollisionShape2D.shape.radius = rect.size.y / 4.0
+	%CollisionShape2D.shape.height = rect.size.x * minawan_sprite.scale.x
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	if not Global.is_playing:
