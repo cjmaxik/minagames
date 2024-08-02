@@ -31,10 +31,10 @@ func _init() -> void:
                 continue
 
             if fname.begins_with("standard_"):
-                standard_minawan.append(fname.trim_suffix(".png.import"))
-                standard_minawan.append(fname.trim_suffix(".png.import")) # twice because we don't have enough
+                standard_minawan.append(import_name.trim_suffix(".png"))
+                standard_minawan.append(import_name.trim_suffix(".png")) # twice because we don't have enough
             else:
-                personalized_minawan.append(fname.trim_suffix(".png.import"))
+                personalized_minawan.append(import_name.trim_suffix(".png"))
                 
     standard_minawan.shuffle()
     personalized_minawan.shuffle()
